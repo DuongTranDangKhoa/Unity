@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
 
+    [SerializeField] private GameObject attackZone;
+
     //Components
     private Rigidbody2D rb;
     private Animator animator;
@@ -42,8 +44,16 @@ public class Player : MonoBehaviour
 
         SetAnimation();
         HandleFlip(xInput);
+        HandleAttack();
     }
 
+    private void HandleAttack()
+    {
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            animator.SetTrigger("attack");
+        }
+    }
 
     private void HandleFlip(float xInput)
     {
@@ -73,5 +83,17 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private void EnableAttackZone()
+    {
+        Debug.Log("Enable");
+        attackZone.SetActive(true);
+    }
+
+    private void DiableAttackZone()
+    {
+        Debug.Log("Diable");
+        attackZone.SetActive(false);
     }
 }
