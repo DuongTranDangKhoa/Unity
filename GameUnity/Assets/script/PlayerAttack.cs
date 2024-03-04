@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private Player player;
+
+    private void Start()
+    {
+        player = GetComponentInParent<Player>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hit something");
         if(collision.CompareTag("Enemy"))
         {
-            Debug.Log("Hit");
+            Enemy enemy = collision.GetComponent<Enemy>();
+
+            if(enemy != null)
+            {
+                enemy.OnBeingHitByPlayer(player.transform.position);
+                enemy.TakeDamage(player.attackDamage);
+            }
         }
     }
 }

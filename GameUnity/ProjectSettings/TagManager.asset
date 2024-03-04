@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
     locked: 0
   - name: backgroup
     uniqueID: 919188895
+    locked: 0
+  - name: Enemy
+    uniqueID: 2281610429
     locked: 0
   - name: Player
     uniqueID: 2205678857

@@ -2,51 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chicken : MonoBehaviour
+public enum ChickenState
 {
-    Animator animator;
-    
-    // Start is called before the first frame update
-    void Start()
+    idleState,
+    moveState
+}
+
+public class Chicken : Enemy
+{
+    private ChickenState chickenState;
+
+    protected override void Start()
     {
-       
-        animator = GetComponent<Animator>();
-        animator.SetBool("run", false);
+        base.Start();
 
-       
-      }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
-        Vector2 position = transform.position;
-        Vector2 scale = transform.localScale;
-        if (Input.GetKey(KeyCode.A)) {
-            position.x -= 1*Time.deltaTime;       
-            scale.x = 1;
-            animator.SetBool("run", true);
-            
-        } else
-        if(Input.GetKey(KeyCode.D)) {
-            position.x += 1 * Time.deltaTime;
-            scale.x = -1;
-            animator.SetBool("run", true);
-          
-        } else
-        if(Input.GetKey(KeyCode.W)) {
-            position.y += 5 *Time.deltaTime;
-            transform.position = position;
-            animator.SetBool("run", true);
-            
-        }
-        else
-        {
-            animator.SetBool("run", false);
-        }
-        
-        transform.localScale = scale;
-        transform.position = position;
-
+        chickenState = ChickenState.idleState;
     }
 }
